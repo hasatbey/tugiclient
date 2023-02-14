@@ -1,12 +1,12 @@
 {
-    "name": "barryvdh/laravel-elfinder",
-    "keywords": ["laravel", "elfinder", "tinymce", "filebrowser"],
+    "name": "hasatbey/tugiclient",
+    "keywords": ["laravel", "tugicms"],
     "description": "A Laravel Package to integrate elFinder 2",
     "license": "MIT",
     "authors": [
         {
-            "name": "Barry vd. Heuvel",
-            "email": "barryvdh@gmail.com"
+            "name": "Turgay Öztürk",
+            "email": "hasatbey@gmail.com"
         }
     ],
     "require": {
@@ -16,16 +16,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Barryvdh\\Elfinder\\": "src/"
+            "Hasatbey\\Tugiclient\\": "src/"
         }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.4-dev"
+            "dev-master": "master"
         },
         "laravel": {
             "providers": [
-                "Barryvdh\\Elfinder\\ElfinderServiceProvider"
+                "Hasatbey\\Tugiclient\\ElfinderServiceProvider"
             ]
         }
     },
