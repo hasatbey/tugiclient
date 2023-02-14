@@ -4,7 +4,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 
-class ElfinderServiceProvider extends ServiceProvider {
+class TugiclientServiceProvider extends ServiceProvider {
 	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
@@ -42,16 +42,9 @@ class ElfinderServiceProvider extends ServiceProvider {
 	    
         $config = $this->app['config']->get('tugiclient.route', []);
         $config['namespace'] = 'Hasatbey\Tugiclient';
-        $router->group($config, function($router)
-        {
-            $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'ElfinderController@showIndex']);
-            $router->any('connector', ['as' => 'tugiclient.connector', 'uses' => 'ElfinderController@showConnector']);
-            $router->get('popup/{input_id}', ['as' => 'tugiclient.popup', 'uses' => 'ElfinderController@showPopup']);
-            $router->get('filepicker/{input_id}', ['as' => 'tugiclient.filepicker', 'uses' => 'ElfinderController@showFilePicker']);
-            $router->get('tinymce', ['as' => 'tugiclient.tinymce', 'uses' => 'ElfinderController@showTinyMCE']);
-            $router->get('tinymce4', ['as' => 'tugiclient.tinymce4', 'uses' => 'ElfinderController@showTinyMCE4']);
-            $router->get('tinymce5', ['as' => 'tugiclient.tinymce5', 'uses' => 'ElfinderController@showTinyMCE5']);
-            $router->get('ckeditor', ['as' => 'tugiclient.ckeditor', 'uses' => 'ElfinderController@showCKeditor4']);
+        $router->group($config, function($router) {
+            $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'TugiclientController@index']);
+            $router->any('test', ['as' => 'tugiclient.connector', 'uses' => 'TugiclientController@test']);
         });
 	}
 
