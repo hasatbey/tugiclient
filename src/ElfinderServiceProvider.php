@@ -21,16 +21,14 @@ class ElfinderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $configPath = __DIR__ . '/config.php';
-        $this->mergeConfigFrom($configPath, 'tugiclient');
-        $this->publishes([$configPath => config_path('tugiclient.php')], 'config');
-
-        $this->app->singleton('command.tugiclient.publish', function($app)
-        {
-			$publicPath = $app['path.public'];
-            return new Console\PublishCommand($app['files'], $publicPath);
-        });
-        $this->commands('command.tugiclient.publish');
+	    $this->loadViewsFrom(__DIR__.'/resources/views', 'tugiclient');
+        $this->publishes([
+		    __DIR__.'/resources/assets/' => public_path('packages/tugiclient'),
+            __DIR__.'/resources/views' => base_path('resources/views/packages/tugiclient'),
+            __DIR__.'/config.php' => config_path('tugiclient.php'),
+        ],'Tugiclient');
+        
+        $this->mergeConfigFrom(__DIR__.'/config.php', 'tugiclient');
 	}
 
 	/**
@@ -42,13 +40,7 @@ class ElfinderServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
 	    
-	    $this->loadViewsFrom(__DIR__.'/resources/views', 'tugiclient');
-        $this->publishes([
-		    __DIR__.'/resources/assets/' => public_path('packages/tugiclient'),
-            __DIR__.'/resources/views' => base_path('resources/views/packages/tugiclient'),
-            __DIR__.'/config.php' => config_path('tugiclient.php'),
-        ],'Tugiclient');
-        
+
         
         $config = $this->app['config']->get('tugiclient.route', []);
         $config['namespace'] = 'Hasatbey\Tugiclient';
