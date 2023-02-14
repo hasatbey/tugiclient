@@ -26,7 +26,7 @@ class ElfinderServiceProvider extends ServiceProvider {
 		    __DIR__.'/resources/assets/' => public_path('packages/tugiclient'),
             __DIR__.'/resources/views' => base_path('resources/views/packages/tugiclient'),
             __DIR__.'/config.php' => config_path('tugiclient.php'),
-        ],'Tugiclient');
+        ],'tugiclient');
         
         $this->mergeConfigFrom(__DIR__.'/config.php', 'tugiclient');
 	}
@@ -40,11 +40,8 @@ class ElfinderServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
 	    
-
-        
         $config = $this->app['config']->get('tugiclient.route', []);
         $config['namespace'] = 'Hasatbey\Tugiclient';
-
         $router->group($config, function($router)
         {
             $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'ElfinderController@showIndex']);
