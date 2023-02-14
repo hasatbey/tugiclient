@@ -21,14 +21,14 @@ class ElfinderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-	    $this->loadViewsFrom(__DIR__.'/resources/views', 'tugiclient');
+	    $this->loadViewsFrom(__DIR__ . '/resources/views', 'tugiclient');
         $this->publishes([
-		    __DIR__.'/resources/assets/' => public_path('packages/tugiclient'),
-            __DIR__.'/resources/views' => base_path('resources/views/packages/tugiclient'),
-            __DIR__.'/config.php' => config_path('tugiclient.php'),
+		    __DIR__.'/../publishes/assets/' => public_path('packages/tugiclient'),
+            __DIR__.'/../publishes/views' => base_path('resources/views/packages/tugiclient'),
+            __DIR__.'/../publishes/config.php' => config_path('tugiclient.php'),
         ],'tugiclient');
         
-        $this->mergeConfigFrom(__DIR__.'/config.php', 'tugiclient');
+        $this->mergeConfigFrom(__DIR__ . '/../publishes/config.php', 'tugiclient');
 	}
 
 	/**
