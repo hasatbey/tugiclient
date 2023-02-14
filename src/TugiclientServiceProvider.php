@@ -44,7 +44,7 @@ class TugiclientServiceProvider extends ServiceProvider {
         $config['namespace'] = 'Hasatbey\Tugiclient';
         $router->group($config, function($router) {
             $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'TugiclientController@index']);
-            $router->any('test', ['as' => 'tugiclient.connector', 'uses' => 'TugiclientController@test']);
+            $router->any('/test', ['as' => 'tugiclient.connector', 'uses' => 'TugiclientController@test']);
         });
 	}
 

@@ -25,7 +25,7 @@ class TugiclientController extends Controller
     {
         return $this->app['view']
             ->make($this->package . '::index')
-            ->with($this->getViewVars());
+            ->with(['dir'=>'dir']);
     }
 
     public function test()
