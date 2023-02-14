@@ -1,5 +1,5 @@
 <?php
-namespace Barryvdh\Elfinder\Console;
+namespace Hasatbey\Tugiclient\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
@@ -16,14 +16,14 @@ class PublishCommand extends Command {
      *
      * @var string
      */
-    protected $name = 'elfinder:publish';
+    protected $name = 'tugiclient:publish';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Publish the elFinder assets';
+    protected $description = 'Publish the tugiclient assets';
 
     /** @var Filesystem $fs */
     protected $files;
@@ -33,7 +33,6 @@ class PublishCommand extends Command {
     /**
      * Create a new Publish command
      *
-     * @param \Illuminate\Filesystem\Filesystem $files
      * @param string $publishPath
      */
     public function __construct($files, $publishPath)
@@ -52,7 +51,7 @@ class PublishCommand extends Command {
     public function handle()
     {
 
-        $package = 'barryvdh/elfinder';
+        $package = 'hasatbey/tugiclient';
         $destination = $this->publishPath . "/packages/{$package}";
 
         if ( ! is_null($path = $this->getElfinderPath())) {
