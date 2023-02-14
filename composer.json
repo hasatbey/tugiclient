@@ -1,7 +1,7 @@
 {
     "name": "hasatbey/tugiclient",
     "keywords": ["laravel", "tugicms"],
-    "description": "A Laravel Package to integrate elFinder 2",
+    "description": "A Laravel Package to integrate Tugiclient",
     "license": "MIT",
     "authors": [
         {
@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
-        "illuminate/support": "^5.5|^6|^7|^8"
+        "php": ">=8.0"
 
     },
     "autoload": {
