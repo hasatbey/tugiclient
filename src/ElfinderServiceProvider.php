@@ -1,4 +1,4 @@
-<?php namespace Barryvdh\Elfinder;
+<?php namespace Hasatbey\Tugiclient;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
@@ -47,12 +47,10 @@ class ElfinderServiceProvider extends ServiceProvider {
             $viewPath => base_path('resources/views/vendor/elfinder'),
         ], 'views');
 
-        if (!defined('ELFINDER_IMG_PARENT_URL')) {
-			define('ELFINDER_IMG_PARENT_URL', $this->app['url']->asset('packages/barryvdh/elfinder'));
-		}
+
 
         $config = $this->app['config']->get('elfinder.route', []);
-        $config['namespace'] = 'Barryvdh\Elfinder';
+        $config['namespace'] = 'Hasatbey\Tugiclient';
 
         $router->group($config, function($router)
         {

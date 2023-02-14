@@ -1,4 +1,4 @@
-<?php namespace Barryvdh\Elfinder;
+<?php namespace Hasatbey\Tugiclient;
 
 use Barryvdh\Elfinder\Session\LaravelSession;
 use Illuminate\Filesystem\FilesystemAdapter;
