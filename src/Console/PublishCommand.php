@@ -5,9 +5,8 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 
 /**
- * Publish the elFinder assets to the public directory
+ * Publish the assets to the public directory
  *
- * @author Barry vd. Heuvel <barryvdh@gmail.com>
  */
 class PublishCommand extends Command {
 
@@ -25,7 +24,7 @@ class PublishCommand extends Command {
      */
     protected $description = 'Publish the tugiclient assets';
 
-    /** @var Filesystem $fs */
+ 
     protected $files;
 
     protected $publishPath;
@@ -113,7 +112,7 @@ class PublishCommand extends Command {
      */
     protected function getElfinderPath()
     {
-        $reflector = new \ReflectionClass('tugiclient');
+        $reflector = new \ReflectionClass('Hasatbey');
         return realpath(dirname($reflector->getFileName()) . '/..');
     }
 
