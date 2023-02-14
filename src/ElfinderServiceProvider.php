@@ -21,7 +21,7 @@ class ElfinderServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-        $configPath = __DIR__ . '/../config/elfinder.php';
+        $configPath = __DIR__ . '/config.php';
         $this->mergeConfigFrom($configPath, 'tugiclient');
         $this->publishes([$configPath => config_path('tugiclient.php')], 'config');
 
