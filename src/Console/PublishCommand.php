@@ -102,7 +102,7 @@ class PublishCommand extends Command {
      *  Get the path of the public folder, to merge with the elFinder folders.
      */
     protected function getPath(){
-        return __DIR__ .'/../../resources/assets';
+        return __DIR__ . '/../../resources/assets';
     }
 
     /**
