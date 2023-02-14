@@ -21,7 +21,7 @@ class TugiclientServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-	    $this->loadViewsFrom(__DIR__ . '/resources/views', 'tugiclient');
+	    $this->loadViewsFrom(__DIR__.'/../publishes/views', 'tugiclient');
         $this->publishes([
 		    __DIR__.'/../publishes/assets/' => public_path('tugiclient'),
             __DIR__.'/../publishes/views' => base_path('resources/views/tugiclient'),
