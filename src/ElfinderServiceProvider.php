@@ -23,8 +23,8 @@ class ElfinderServiceProvider extends ServiceProvider {
 	{
 	    $this->loadViewsFrom(__DIR__ . '/resources/views', 'tugiclient');
         $this->publishes([
-		    __DIR__.'/../publishes/assets/' => public_path('packages/tugiclient'),
-            __DIR__.'/../publishes/views' => base_path('resources/views/packages/tugiclient'),
+		    __DIR__.'/../publishes/assets/' => public_path('tugiclient'),
+            __DIR__.'/../publishes/views' => base_path('resources/views/tugiclient'),
             __DIR__.'/../publishes/config.php' => config_path('tugiclient.php'),
         ],'tugiclient');
         
