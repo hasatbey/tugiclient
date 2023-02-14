@@ -30,7 +30,7 @@ class ElfinderServiceProvider extends ServiceProvider {
 			$publicPath = $app['path.public'];
             return new Console\PublishCommand($app['files'], $publicPath);
         });
-        $this->commands('command.elfinder.publish');
+        $this->commands('command.tugiclient.publish');
 	}
 
 	/**
@@ -42,9 +42,9 @@ class ElfinderServiceProvider extends ServiceProvider {
 	public function boot(Router $router)
 	{
         $viewPath = __DIR__.'/../resources/views';
-        $this->loadViewsFrom($viewPath, 'elfinder');
+        $this->loadViewsFrom($viewPath, 'tugiclient');
         $this->publishes([
-            $viewPath => base_path('resources/views/vendor/elfinder'),
+            $viewPath => base_path('resources/views/vendor/tugiclient'),
         ], 'views');
 
 
@@ -72,7 +72,7 @@ class ElfinderServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array('command.elfinder.publish');
+		return array('command.tugiclient.publish');
 	}
 
 }
