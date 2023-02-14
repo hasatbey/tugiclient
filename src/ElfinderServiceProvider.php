@@ -11,6 +11,7 @@ class ElfinderServiceProvider extends ServiceProvider {
 	 * @var bool
 	 */
 	
+	
 	protected $defer = false;
 
 	/**
