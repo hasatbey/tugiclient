@@ -22,10 +22,10 @@ class ElfinderServiceProvider extends ServiceProvider {
 	public function register()
 	{
         $configPath = __DIR__ . '/../config/elfinder.php';
-        $this->mergeConfigFrom($configPath, 'elfinder');
-        $this->publishes([$configPath => config_path('elfinder.php')], 'config');
+        $this->mergeConfigFrom($configPath, 'tugiclient');
+        $this->publishes([$configPath => config_path('tugiclient.php')], 'config');
 
-        $this->app->singleton('command.elfinder.publish', function($app)
+        $this->app->singleton('command.tugiclient.publish', function($app)
         {
 			$publicPath = $app['path.public'];
             return new Console\PublishCommand($app['files'], $publicPath);
@@ -49,19 +49,19 @@ class ElfinderServiceProvider extends ServiceProvider {
 
 
 
-        $config = $this->app['config']->get('elfinder.route', []);
+        $config = $this->app['config']->get('tugiclient.route', []);
         $config['namespace'] = 'Hasatbey\Tugiclient';
 
         $router->group($config, function($router)
         {
-            $router->get('/',  ['as' => 'elfinder.index', 'uses' =>'ElfinderController@showIndex']);
-            $router->any('connector', ['as' => 'elfinder.connector', 'uses' => 'ElfinderController@showConnector']);
-            $router->get('popup/{input_id}', ['as' => 'elfinder.popup', 'uses' => 'ElfinderController@showPopup']);
-            $router->get('filepicker/{input_id}', ['as' => 'elfinder.filepicker', 'uses' => 'ElfinderController@showFilePicker']);
-            $router->get('tinymce', ['as' => 'elfinder.tinymce', 'uses' => 'ElfinderController@showTinyMCE']);
-            $router->get('tinymce4', ['as' => 'elfinder.tinymce4', 'uses' => 'ElfinderController@showTinyMCE4']);
-            $router->get('tinymce5', ['as' => 'elfinder.tinymce5', 'uses' => 'ElfinderController@showTinyMCE5']);
-            $router->get('ckeditor', ['as' => 'elfinder.ckeditor', 'uses' => 'ElfinderController@showCKeditor4']);
+            $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'ElfinderController@showIndex']);
+            $router->any('connector', ['as' => 'tugiclient.connector', 'uses' => 'ElfinderController@showConnector']);
+            $router->get('popup/{input_id}', ['as' => 'tugiclient.popup', 'uses' => 'ElfinderController@showPopup']);
+            $router->get('filepicker/{input_id}', ['as' => 'tugiclient.filepicker', 'uses' => 'ElfinderController@showFilePicker']);
+            $router->get('tinymce', ['as' => 'tugiclient.tinymce', 'uses' => 'ElfinderController@showTinyMCE']);
+            $router->get('tinymce4', ['as' => 'tugiclient.tinymce4', 'uses' => 'ElfinderController@showTinyMCE4']);
+            $router->get('tinymce5', ['as' => 'tugiclient.tinymce5', 'uses' => 'ElfinderController@showTinyMCE5']);
+            $router->get('ckeditor', ['as' => 'tugiclient.ckeditor', 'uses' => 'ElfinderController@showCKeditor4']);
         });
 	}
 
