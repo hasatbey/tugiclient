@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Request;
 
 class TugiclientController extends Controller
 {
-    protected $package = 'elfinder';
+    protected $package = 'tugiclient';
 
     /**
      * The application instance.
@@ -24,14 +24,14 @@ class TugiclientController extends Controller
     public function index()
     {
         return $this->app['view']
-            ->make($this->package . '::elfinder')
+            ->make($this->package . '::index')
             ->with($this->getViewVars());
     }
 
     public function test()
     {
         return $this->app['view']
-            ->make($this->package . '::tinymce')
+            ->make($this->package . '::test')
             ->with($this->getViewVars());
     }
  
