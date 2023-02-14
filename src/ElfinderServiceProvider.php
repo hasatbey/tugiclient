@@ -3,6 +3,7 @@
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
+
 class ElfinderServiceProvider extends ServiceProvider {
 	/**
 	 * Indicates if loading of the provider is deferred.
