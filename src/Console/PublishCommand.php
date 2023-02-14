@@ -112,7 +112,7 @@ class PublishCommand extends Command {
      */
     protected function getElfinderPath()
     {
-        $reflector = new \ReflectionClass('Hasatbey');
+        $reflector = new \ReflectionClass('Hasatbey/Tugiclient');
         return realpath(dirname($reflector->getFileName()) . '/..');
     }
 
