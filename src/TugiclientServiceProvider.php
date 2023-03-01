@@ -42,6 +42,16 @@ class TugiclientServiceProvider extends ServiceProvider {
 	    
         $config = $this->app['config']->get('tugiclient.route', []);
         $config['namespace'] = 'Hasatbey\Tugiclient';
+        
+
+        
+         app()->config["filesystems.disks.tugiclient"] = [
+            'driver' => 'local',
+            'root' => public_path('tugiclient/files'),
+            'url' => 'file',
+            'visibility' => 'tugicms',
+        ];
+                
         $router->group($config, function($router) {
             $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'TugiclientController@index']);
             $router->any('/test', ['as' => 'tugiclient.connector', 'uses' => 'TugiclientController@test']);
@@ -51,8 +61,8 @@ class TugiclientServiceProvider extends ServiceProvider {
             $router->get('/file/{path}', function(\Illuminate\Contracts\Filesystem\Filesystem $filesystem , $path){
                     $server = \League\Glide\ServerFactory::create([
                         'response' => new \League\Glide\Responses\LaravelResponseFactory(app('request')),
-                        'source' => app('filesystem')->disk('public')->getDriver(),
-                        'cache' => app('filesystem')->disk('public')->getDriver(),
+                        'source' => app('filesystem')->disk('tugiclient')->getDriver(),
+                        'cache' => app('filesystem')->disk('tugiclient')->getDriver(),
                         'cache_path_prefix' => '.cache',
                         'base_url' => 'img',
                     ]);
