@@ -23,6 +23,10 @@ class TugiclientController extends Controller
 
     public function index()
     {
+        
+        
+        
+        
         return $this->app['view']
             ->make($this->package . '::index')
             ->with(['dir'=>'dir']);

@@ -51,8 +51,8 @@ class TugiclientServiceProvider extends ServiceProvider {
             $router->get('/file/{path}', function(\Illuminate\Contracts\Filesystem\Filesystem $filesystem , $path){
                     $server = \League\Glide\ServerFactory::create([
                         'response' => new \League\Glide\Responses\LaravelResponseFactory(app('request')),
-                        'source' => app('filesystem')->disk('ftp')->getDriver(),
-                        'cache' => app('filesystem')->disk('ftp')->getDriver(),
+                        'source' => app('filesystem')->disk('public')->getDriver(),
+                        'cache' => app('filesystem')->disk('public')->getDriver(),
                         'cache_path_prefix' => '.cache',
                         'base_url' => 'img',
                     ]);
