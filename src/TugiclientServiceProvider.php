@@ -48,9 +48,7 @@ class TugiclientServiceProvider extends ServiceProvider {
         app()->config["filesystems.disks.tugiclient"] = ['driver' => 'local','root' => public_path('tugiclient/files')];
         
         $router->group($config, function($router) {
-            $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'TugiclientController@index']);
-            $router->any('/test', ['as' => 'tugiclient.connector', 'uses' => 'TugiclientController@test']);
-        
+
             // Glide process url for images in (filesystem) folder
             // EX: http://yoursite.com/file/1.jpg?w=1200&h=800&fit=crop
             $router->get('/file/{path}', function(\Illuminate\Contracts\Filesystem\Filesystem $filesystem , $path){
@@ -64,7 +62,10 @@ class TugiclientServiceProvider extends ServiceProvider {
                 return $server->getImageResponse($path, request()->all());
             })->where('path', '.+');
 
-            
+            Route::any('/', array('as' => 'siteHome', 'uses' => 'FrontendController@buildView'));
+            Route::any('/{slug?}/', array('as' => 'siteMenu', 'uses' => 'FrontendController@buildView'))->where('slug', '(.*)');
+
+
         });
 	}
 

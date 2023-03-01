@@ -3,7 +3,8 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Request;
+use Hasatbey\Tugiclient\Models\Translate;
+//use Illuminate\Support\Facades\Request;
 
 class TugiclientController extends Controller
 {
@@ -21,10 +22,13 @@ class TugiclientController extends Controller
         $this->app = $app;
     }
 
-    public function index()
+    public function index($slugs = null)
     {
-        
-        
+        $slugArr = $slugs ? explode('/', $slugs) : [];
+        $current = Translate::select('*')->with('page')->where('slug', end($slugArr))->where('status', 1)->first()->toArray();
+    
+        print_r($current);
+        exit();
         
         
         return $this->app['view']

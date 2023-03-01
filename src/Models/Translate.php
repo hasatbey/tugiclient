@@ -6,4 +6,9 @@ class Translate extends Model{
     protected $table = 'cms_translates';
 	protected $guarded = false;
 	public $timestamps = false;
+	
+    public function page(){
+		return $this->belongsTo('Hasatbey\Tugiclient\Models\Page','page_id');
+	}
+	
 }
