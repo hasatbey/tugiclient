@@ -45,6 +45,21 @@ class TugiclientServiceProvider extends ServiceProvider {
         $router->group($config, function($router) {
             $router->get('/',  ['as' => 'tugiclient.index', 'uses' =>'TugiclientController@index']);
             $router->any('/test', ['as' => 'tugiclient.connector', 'uses' => 'TugiclientController@test']);
+        
+            // Glide process url for images in (filesystem) folder
+            // EX: http://yoursite.com/file/1.jpg?w=1200&h=800&fit=crop
+            $router->get('/file/{path}', function(\Illuminate\Contracts\Filesystem\Filesystem $filesystem , $path){
+                    $server = \League\Glide\ServerFactory::create([
+                        'response' => new \League\Glide\Responses\LaravelResponseFactory(app('request')),
+                        'source' => app('filesystem')->disk('ftp')->getDriver(),
+                        'cache' => app('filesystem')->disk('ftp')->getDriver(),
+                        'cache_path_prefix' => '.cache',
+                        'base_url' => 'img',
+                    ]);
+                    return $server->getImageResponse($path, request()->all());
+            })->where('path', '.+');
+
+            
         });
 	}
 
