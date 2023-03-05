@@ -10,13 +10,13 @@ class Page extends Model{
 
     public function translates(){
         $languages = config('tugicms.company.languages');
-		return $this->hasMany('Tugicms\Models\Site\Translate','page_id')
+		return $this->hasMany('Hasatbey\Tugiclient\Models\Translate','page_id')
             ->orderByRaw("FIELD(language ,'".$languages[0]."') DESC");
 	}
     public function contents(){
-		return $this->hasMany('Tugicms\Models\Site\Contents','page_id');
+		return $this->hasMany('Hasatbey\Tugiclient\Models\Contents','page_id');
 	}
 	public function menu(){
-        return $this->belongsTo('Tugicms\Models\Site\Menu', 'menu_id');
+        return $this->belongsTo('Hasatbey\Tugiclient\Models\Menu', 'menu_id');
     }
 }

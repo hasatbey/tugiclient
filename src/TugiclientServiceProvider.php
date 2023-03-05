@@ -44,28 +44,30 @@ class TugiclientServiceProvider extends ServiceProvider {
         $config['namespace'] = 'Hasatbey\Tugiclient';
         
 
-        //add drive for files
-        app()->config["filesystems.disks.tugiclient"] = ['driver' => 'local','root' => public_path('tugiclient/files')];
         
+         app()->config["filesystems.disks.tugiclient"] = [
+            'driver' => 'local',
+            'root' => public_path('tugiclient/files'),
+        ];
+                
         $router->group($config, function($router) {
 
+        
             // Glide process url for images in (filesystem) folder
             // EX: http://yoursite.com/file/1.jpg?w=1200&h=800&fit=crop
             $router->get('/file/{path}', function(\Illuminate\Contracts\Filesystem\Filesystem $filesystem , $path){
-                $server = \League\Glide\ServerFactory::create([
-                    'response' => new \League\Glide\Responses\LaravelResponseFactory(app('request')),
-                    'source' => app('filesystem')->disk('tugiclient')->getDriver(),
-                    'cache' => app('filesystem')->disk('tugiclient')->getDriver(),
-                    'cache_path_prefix' => '.cache',
-                    'base_url' => 'img',
-                ]);
-                return $server->getImageResponse($path, request()->all());
+                    $server = \League\Glide\ServerFactory::create([
+                        'response' => new \League\Glide\Responses\LaravelResponseFactory(app('request')),
+                        'source' => app('filesystem')->disk('tugiclient')->getDriver(),
+                        'cache' => app('filesystem')->disk('tugiclient')->getDriver(),
+                        'cache_path_prefix' => '.cache',
+                        'base_url' => 'img',
+                    ]);
+                    return $server->getImageResponse($path, request()->all());
             })->where('path', '.+');
 
-            Route::any('/', array('as' => 'siteHome', 'uses' => 'FrontendController@buildView'));
-            Route::any('/{slug?}/', array('as' => 'siteMenu', 'uses' => 'FrontendController@buildView'))->where('slug', '(.*)');
-
-
+            $router->any('/', array('as' => 'tugiclient.index', 'uses' => 'TugiclientController@index'));
+            $router->any('/{slug?}/', array('as' => 'tugiclient.page', 'uses' => 'TugiclientController@index'))->where('slug', '(.*)');
         });
 	}
 
