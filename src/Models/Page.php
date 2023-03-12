@@ -15,6 +15,8 @@ class Page extends Model{
 	}
     public function translate(){
 		return $this->hasOne('Hasatbey\Tugiclient\Models\Translate','page_id')
+            ->where('status',1)
+            ->where('visible',1)
             ->where("language",config('app.locale'));
 	}
 	

@@ -9,7 +9,10 @@ class Menu extends Model{
     public $timestamps = false;
 
 	public function children(){
-		return $this->hasMany('Hasatbey\Tugiclient\Models\Menu','parent_id')->with('cover_page.translate')->with('children');
+		return $this->hasMany('Hasatbey\Tugiclient\Models\Menu','parent_id')
+            ->has('cover_page.translate')
+            ->with('cover_page.translate')
+            ->with('children');
 	}
     public function cover_page(){
 		return $this->hasOne('Hasatbey\Tugiclient\Models\Page','menu_id');
